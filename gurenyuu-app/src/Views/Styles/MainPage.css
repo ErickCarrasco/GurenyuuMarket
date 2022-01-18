@@ -1,0 +1,19 @@
+.LandingPageContainer {
+    background-color: #F7F9F9;
+  
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  
+    height: 100vh;
+  }
+  
+  /* Div Containers */
+  
+  .DivContainer {
+    color: #F7F9F9;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+  
+  }
