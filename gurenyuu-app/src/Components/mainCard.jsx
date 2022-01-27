@@ -10,7 +10,7 @@ import "firebase/compat/storage";
 import { makeStyles } from "@material-ui/core/styles";
 
 
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
@@ -22,11 +22,32 @@ if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
   }
   const db = firebase.firestore();
+  const useStyles = makeStyles({
+    root: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      justifyContent: 'space-around',
+      overflow: 'hidden',
+      marginBottom: '5%'
+  
+    },
+    gridList: {
+      width:'70%',
+      flexWrap: 'nowrap',
+      transform: 'translateZ(0)',
+    },
+    icon: {
+      color: 'rgba(255, 255, 255, 0.54)',
+    },
+    ancho:{
+      
+    }
+  });
 
   export default function MainCard() {
     const [categorias, setCategorias] = React.useState([]);
     const classes = useStyles();
-    let history = useHistory();
+    let history = useNavigate();
     useEffect(() => {
       getCategorias();
     }, []);
@@ -34,7 +55,7 @@ if (!firebase.apps.length) {
     const getCategorias = async () => {
       let obj;
       let list = [];
-      const querySnapshot = await db.collection("games").get();
+      const querySnapshot = await db.collection("articles").get();
       querySnapshot.forEach((doc) => {
         obj = doc.data();
         obj.id = doc.id;
@@ -54,7 +75,7 @@ if (!firebase.apps.length) {
               title={tile.name}
           
               actionIcon={
-                <IconButton aria-label={`info about ${tile.title}`} className={classes.icon}  onClick={() => history.push({pathname: "/Grid", state: tile})}>
+                <IconButton aria-label={`info about ${tile.codename}`} className={classes.icon}  onClick={() => history('/article',{ state: {tile}})}>
                   <InfoIcon />
                 </IconButton>
               }

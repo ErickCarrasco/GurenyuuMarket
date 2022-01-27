@@ -26,7 +26,7 @@ if (!firebase.apps.length) {
 
 function ArticlePage(){
     let location = useLocation();
-    //const [listaDatos, setListaDatos] = useState(location.state);
+    const [listaDatos, setListaDatos] = useState(location.state);
     const [url, setUrl] = useState("");
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
@@ -42,7 +42,7 @@ function ArticlePage(){
     const getProductDetails = async () => {
         let obj;
         const querySnapshot = await db.collection("articles").get();
-       
+       console.log(listaDatos)
         querySnapshot.forEach((doc) => {
             obj = doc.data();
             obj.id = doc.id;
