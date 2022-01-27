@@ -6,11 +6,15 @@ import './Styles/NavBar.css';
 const NavBar = () =>{
     const [click, setClick] = useState(false);
     const handleClick = () => setClick(!click);
+    let audio = new Audio("/neco-arc-gurenyuu.mp3");
+    const playAudio =()=>{
+      audio.play()
+    }
     return(
         <nav className='navbar'>
             <div className="nav-container">
           
-          <NavLink style={{ color: "white" }} exact to="/" className="nav-logo">
+          <NavLink style={{ color: "gray" }} exact to="/" className="nav-logo" onClick={playAudio}>
              <img src={gurenyuuIcon} width="75px" ></img>
             </NavLink>
   
