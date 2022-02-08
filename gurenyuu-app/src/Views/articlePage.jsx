@@ -26,27 +26,29 @@ if (!firebase.apps.length) {
 
 function ArticlePage(){
     let location = useLocation();
-    const [listaDatos, setListaDatos] = useState(location.state);
-    const [url, setUrl] = useState("");
-    const [name, setName] = useState("");
-    const [description, setDescription] = useState("");
-    const [tags, setTags] = useState([]);
-    const [price, setPrice] = useState("");
-    const [docID, setDocid] = useState();
+    const [listData, setListData] = useState(location.state);
+    const [url, setUrl] = useState(listData.tile.url);
+    const [name, setName] = useState(listData.tile.name);
+    const [description, setDescription] = useState(listData.tile.description);
+    const [tags, setTags] = useState(listData.tile.tags);
+    const [price, setPrice] = useState(listData.tile.price);
+    const [quantity, setQuantity] = useState(listData.tile.quantity);
+    const [docId, setDocid] = useState("");
+
     let audio = new Audio("/neco-arc-s2.wav");
 
     useEffect(()=>{
-        getProductDetails()
+        //getProductDetails()
     },[]);
 
     const getProductDetails = async () => {
         let obj;
         const querySnapshot = await db.collection("articles").get();
-       console.log(listaDatos)
+       console.log(listData)
         querySnapshot.forEach((doc) => {
             obj = doc.data();
             obj.id = doc.id;
-            let name="Rom"
+            let name="Neptuna"
             if(name === doc.data().name){
                 let codename = doc.data().codename;
                 setName(doc.data().name)
@@ -54,7 +56,7 @@ function ArticlePage(){
                 setPrice(doc.data().price)
                 setTags(doc.data().tags)
                 setDocid(obj.id)
-                //let url =  firebase.storage().ref("ProductPics/"+codename+'.png').getDownloadURL();
+                //let url =  firebase.storage().ref("ProductPics/"+codename+'.jpg').getDownloadURL();
                 //console.log(url)
                 setUrl(doc.data().url);
 
@@ -92,7 +94,7 @@ function ArticlePage(){
                         style={{backgroundColor:'green', fontFamily:'Arial', borderColor:'black', boxShadow:'inherit', color:'white'}}
                         onClick={buyArticle}
                         >
-                        {price} Add to Cart
+                        $ {price} Add to Cart
                     </Button>
             </Grid>
          </Grid>
