@@ -1,11 +1,13 @@
+//React + Firebase
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import firebase from "firebase/compat/app";
 import firebaseConfig from "../firebase-config";
 import "firebase/compat/firestore";
 import "firebase/compat/storage"
+import { getAuth} from "firebase/auth"
 
-
+import gurenyuuIcon from './Styles/Neco-Arc_Remake.png';
 //MATERIAL UI
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
@@ -34,8 +36,12 @@ function ArticlePage(){
     const [price, setPrice] = useState(listData.tile.price);
     const [quantity, setQuantity] = useState(listData.tile.quantity);
     const [docId, setDocid] = useState("");
-
+    const auth = getAuth();
+    const currentUser = auth.currentUser;
     let audio = new Audio("/neco-arc-s2.wav");
+    let audioMuda = new Audio("/neco-arc-mudamuda.wav");
+
+    const [logFirst, setLogFirst] = useState(false);
 
     useEffect(()=>{
         //getProductDetails()
@@ -67,8 +73,16 @@ function ArticlePage(){
       };
 
       const buyArticle = () =>{
-          
-          audio.play();
+          if(currentUser==null){
+            audioMuda.play();
+            setLogFirst(true);
+          }else{
+              audio.play();
+          }
+      }
+
+      function closeLogMessage(){
+          setLogFirst(false);
       }
 
       return(
@@ -116,6 +130,35 @@ function ArticlePage(){
 
          <br/>
          <br/>
+
+
+         <Dialog
+                open={logFirst}
+                onClose = {closeLogMessage}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+              >
+                  <DialogTitle id ='alert-dialog-title'>
+                      {"You are not logged in!"}
+                  </DialogTitle>
+                  <DialogContent>
+                  
+                  
+                  <img src={gurenyuuIcon} width="75px" ></img>
+                    In order to buy an article, you must be logged in!
+                 
+                  <DialogActions>
+                      <Button  color="primary">
+                          Login/Sign Up
+                      </Button>
+                      <Button onClick={closeLogMessage} color="secondary">
+                          Close
+                      </Button>
+                  </DialogActions>
+                  </DialogContent>
+              </Dialog>
+
+
 
     </div>
     </div>
