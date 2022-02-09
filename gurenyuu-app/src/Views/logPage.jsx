@@ -27,7 +27,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -53,7 +53,7 @@ if (!firebase.apps.length) {
 }
 
 
-export default function SignIn() {
+export default function Login() {
   var pass;
   const [email, setEmail] = useState("");
 
@@ -62,7 +62,7 @@ export default function SignIn() {
   const [openMessage, setOpenMessage] = React.useState(false);
   const [openMessage2, setOpenMessage2] = React.useState(false);
   
-  const history = useHistory();
+  let history = useNavigate();
   //const db = firebase.firestore();
   /*const Usuarios = async () =>{
     await setDoc(doc(db, "cities", "LA")
@@ -90,7 +90,7 @@ export default function SignIn() {
         //Usuarios();
         
 
-        history.push("/");
+        history('/');
 
         //   user2 = firebase.auth().currentUser();
       })
@@ -115,10 +115,10 @@ export default function SignIn() {
 
   const classes = useStyles();
   return (
-    <div>
+    <div style={{backgroundImage: `url(${"https://image.freepik.com/free-vector/gradient-white-monochrome-background_23-2149001474.jpg"})`}}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
-        <div className={classes.paper}>
+        <div className={classes.paper} style={{backgroundColor:"white"}}>
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
@@ -132,7 +132,7 @@ export default function SignIn() {
               required
               fullWidth
               id="email"
-              label="Correo Electronico"
+              label="E-mail"
               name="email"
               autoComplete="email"
               autoFocus
@@ -144,7 +144,7 @@ export default function SignIn() {
               required
               fullWidth
               name="password"
-              label="Contraseña"
+              label="password"
               type="password"
               id="password"
               autoComplete="current-password"
@@ -198,7 +198,7 @@ export default function SignIn() {
 
               <Grid item xs>
                 <Link
-                  to="/Login"
+                  to="/signup"
                   style={{ textDecoration: "none", color: "Blue" }}
                 >
                   Sign Up if you don't have an account

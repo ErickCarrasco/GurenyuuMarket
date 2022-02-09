@@ -142,11 +142,8 @@ function ArticlePage(){
                       {"You are not logged in!"}
                   </DialogTitle>
                   <DialogContent>
-                  
-                  
                   <img src={gurenyuuIcon} width="75px" ></img>
                     In order to buy an article, you must be logged in!
-                 
                   <DialogActions>
                       <Button  color="primary">
                           Login/Sign Up

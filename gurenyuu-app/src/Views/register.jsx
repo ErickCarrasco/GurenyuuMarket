@@ -28,7 +28,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -64,14 +64,14 @@ if (!firebase.apps.length) {
 
 const db = firebase.firestore();
 
-export default function Login(props) {
+export default function Register(props) {
   const [email, setEmail] = useState('');
   const [nombre, setnombre] = useState('');
   const [apellido, setapellido] = useState('');
   const [openMessage, setOpenMessage] = React.useState(false);
   const [openMessage2, setOpenMessage2] = React.useState(false);
   const [password2, setPassword2] = useState('');
-  const history = useHistory();
+  let history = useNavigate();
   const [ListaCompra, setListaCompra] = React.useState([]);
     const [listajuegos, setListajuegos] = React.useState([]);
   
@@ -105,7 +105,7 @@ createUserWithEmailAndPassword(auth, email, password2)
 const handleCloseMessage = () => {
   setOpenMessage(false);
   
-  history.push("/Perfil");
+  history("/Profile");
   //window.location.reload();
 
 };
@@ -125,6 +125,7 @@ const handleCloseMessage2 = () => {
 
 
   return (
+    <div style={{backgroundImage: `url(${"https://image.freepik.com/free-vector/gradient-white-monochrome-background_23-2149001474.jpg"})`}}>
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
@@ -132,7 +133,7 @@ const handleCloseMessage2 = () => {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Registrarse
+          Create an Account!
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
@@ -144,7 +145,7 @@ const handleCloseMessage2 = () => {
                 required
                 fullWidth
                 id="firstName"
-                label="Nombre"
+                label="Name"
                 autoFocus
                 onChange={(ev) => setnombre(ev.target.value)}
               />
@@ -155,7 +156,7 @@ const handleCloseMessage2 = () => {
                 required
                 fullWidth
                 id="lastName"
-                label="Apellido"
+                label="Last name"
                 name="lastName"
                 autoComplete="lname"
                 autoFocus
@@ -173,7 +174,7 @@ const handleCloseMessage2 = () => {
             required
             fullWidth
             id="email"
-            label="Correo Electronico"
+            label="E-mail"
             name="email"
             autoComplete="email"
             autoFocus
@@ -187,7 +188,7 @@ const handleCloseMessage2 = () => {
             required
             fullWidth
             name="password"
-            label="Contraseña"
+            label="password"
             type="password"
             id="password"
             autoComplete="current-password"
@@ -203,7 +204,7 @@ const handleCloseMessage2 = () => {
             color="primary"
             className={classes.submit}
           >
-            Registrarse
+            Create Account
           </Button>
           <Dialog
                   open={openMessage2}
@@ -211,15 +212,15 @@ const handleCloseMessage2 = () => {
                   aria-labelledby="alert-dialog-title"
                   aria-describedby="alert-dialog-description"
                   >
-                <DialogTitle id="alert-dialog-title">{"¿Error en creación de cuenta nueva?"}</DialogTitle>
+                <DialogTitle id="alert-dialog-title">{"ATTENTION!"}</DialogTitle>
                 <DialogContent>
                 <DialogContentText id="alert-dialog-description">
-                  Intente de nuevo
+                  An error has been found
                 </DialogContentText>
                 </DialogContent>
                 <DialogActions>
                 <Button onClick={handleCloseMessage2} color="primary">
-                Confirmacion
+                Accept
                 </Button>
                 
               </DialogActions>
@@ -230,16 +231,16 @@ const handleCloseMessage2 = () => {
                   aria-labelledby="alert-dialog-title"
                   aria-describedby="alert-dialog-description"
                   >
-                <DialogTitle id="alert-dialog-title">{"Creación de cuenta nueva correcta"}</DialogTitle>
+                <DialogTitle id="alert-dialog-title">{"Account creation successful"}</DialogTitle>
                 <DialogContent>
                 <DialogContentText id="alert-dialog-description">
-                  Su cuenta se ha creado correctamente.
+                  Account created
                   
                 </DialogContentText>
                 </DialogContent>
                 <DialogActions>
                 <Button onClick={handleCloseMessage} color="primary">
-                Confirmacion
+                Confirm
                 </Button>
                 
               </DialogActions>
@@ -248,7 +249,7 @@ const handleCloseMessage2 = () => {
           <Grid container justify="flex-end">
             <Grid item>
               <Link to="/Perfil"  style={{ textDecoration: 'none' ,color:"Blue"}} >
-                Volver
+                Return
               </Link>
             </Grid>
           </Grid>
@@ -256,5 +257,6 @@ const handleCloseMessage2 = () => {
       </div>
      
     </Container>
+    </div>
   );
 }

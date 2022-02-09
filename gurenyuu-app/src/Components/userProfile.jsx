@@ -25,7 +25,7 @@ const admin = auth.currentUser;
 
   if (admin) {
     return (
-      <Link to="/Perfil" style={{ color: "Black" }}>
+      <Link to="/Profile" style={{ color: "Black" }}>
 
         <Button >
           <Avatar style={{ background: "lightblue", width: '30px',
@@ -40,7 +40,7 @@ const admin = auth.currentUser;
     );
   } else if (!admin) {
     return (
-      <Link to="/SignIn" style={{ color: "Black" }}>
+      <Link to="/Login" style={{ color: "Black" }}>
         Log In
       </Link>
     );
