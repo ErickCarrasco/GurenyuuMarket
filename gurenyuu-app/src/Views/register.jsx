@@ -72,12 +72,16 @@ export default function Register(props) {
   const [openMessage2, setOpenMessage2] = React.useState(false);
   const [password2, setPassword2] = useState('');
   let history = useNavigate();
-  const [ListaCompra, setListaCompra] = React.useState([]);
-    const [listajuegos, setListajuegos] = React.useState([]);
+  const [Cart, setCart] = React.useState([]);
+  const [inventory, setInventory] = React.useState([]);
+  const [image, setImage] = useState([]);
+  const [imageUrl, setImageUrl] = useState([]);
+  const [tempImg, setTempImg] = useState();
   
 const Usuarios = async () =>{
-  
-  let obj = { nombre, apellido, email, ListaCompra, listajuegos};
+  await firebase.storage().ref('ProfPics/'+email+'.jpg').put(image);
+  let imgUrl = await firebase.storage().ref('ProfPics/'+email+'.jpg').getDownloadURL();
+  let obj = { nombre, apellido, email, Cart, inventory, imgUrl};
   console.log("hola: "+nombre)
     db.collection("Usuarios").add(obj);
   
@@ -120,6 +124,12 @@ const handleCloseMessage2 = () => {
   setOpenMessage2(false);
  // user2=null;
 };
+
+const handleImageUpload =(e) =>{
+  const imageData = e.target.files[0];
+  setImage(image =>(imageData))
+  setTempImg(URL.createObjectURL(imageData))
+}
   const classes = useStyles();
 
 
@@ -194,7 +204,13 @@ const handleCloseMessage2 = () => {
             autoComplete="current-password"
             onChange={(ev) => setPassword2(ev.target.value)}
           />
-           
+           <Grid item xs={12} sm={12}>
+             <h4>Profile Picture</h4>
+             <img src={tempImg} width="50%" />
+           </Grid>
+           <input type="file" accept="image/*" onChange={handleImageUpload}/>
+
+
           </Grid>
           <Button
             //type="submit"
@@ -246,13 +262,7 @@ const handleCloseMessage2 = () => {
               </DialogActions>
             </Dialog>
 
-          <Grid container justify="flex-end">
-            <Grid item>
-              <Link to="/Perfil"  style={{ textDecoration: 'none' ,color:"Blue"}} >
-                Return
-              </Link>
-            </Grid>
-          </Grid>
+          
         </form>
       </div>
      

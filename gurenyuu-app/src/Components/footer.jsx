@@ -1,43 +1,41 @@
 import React from "react";
-import { MDBCol, MDBContainer, MDBRow, MDBFooter } from "mdbreact";
-
+import Typography from "@material-ui/core/Typography";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Container from "@material-ui/core/Container";
+import gurenyuuIcon from './Styles/Neco-Arc_Happy.png';
 function FooterPage() {
   return (
-    <MDBFooter color="blue" className="font-small pt-4 mt-4">
-      <MDBContainer fluid className="text-center text-md-left">
-        <MDBRow>
-          <MDBCol md="6">
-            <h5 className="title">Footer Content</h5>
-            <p>
-              Here you can use rows and columns here to organize your footer
-              content.
-            </p>
-          </MDBCol>
-          <MDBCol md="6">
-            <h5 className="title">Links</h5>
-            <ul>
-              <li className="list-unstyled">
-                <a href="#!">Link 1</a>
-              </li>
-              <li className="list-unstyled">
-                <a href="#!">Link 2</a>
-              </li>
-              <li className="list-unstyled">
-                <a href="#!">Link 3</a>
-              </li>
-              <li className="list-unstyled">
-                <a href="#!">Link 4</a>
-              </li>
-            </ul>
-          </MDBCol>
-        </MDBRow>
-      </MDBContainer>
-      <div className="footer-copyright text-center py-3">
-        <MDBContainer fluid>
-          &copy; {new Date().getFullYear()} Copyright: <a href="https://www.mdbootstrap.com"> MDBootstrap.com </a>
-        </MDBContainer>
-      </div>
-    </MDBFooter>
+    <AppBar position="static" style={{ backgroundColor: "gray", 
+  }} >
+    <Container maxWidth="md">
+      <Toolbar>
+        <div style={{ marginLeft: "10px" }}>
+        <br></br>
+          <img src={gurenyuuIcon} width="80px" height="90px" alt="GURENYUU" ></img>
+          <br></br>
+
+        </div>
+        <div style={{ marginLeft: "200px" }}>
+        <br></br>
+          <Typography variant="body1" color="default">
+            All the memes and images belong to their respective owners, lel
+          </Typography>
+          <br></br>
+
+        </div>
+
+        <div style={{ marginLeft: "40px" }}>
+          <br></br>
+          <Typography variant="body1" color="default">
+            NECO-ARC & NEPTUNA Co.
+          </Typography>
+          <br></br>
+          <br></br>
+        </div>
+      </Toolbar>
+    </Container>
+  </AppBar>
   );
 }
 

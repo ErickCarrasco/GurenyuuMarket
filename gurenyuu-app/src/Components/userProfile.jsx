@@ -21,6 +21,7 @@ const UserProfile = (props) => {
   const auth = getAuth();
 const admin = auth.currentUser;
 
+  console.log(admin);
   
 
   if (admin) {

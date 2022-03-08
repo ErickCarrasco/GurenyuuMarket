@@ -1,0 +1,80 @@
+.conocenosForm {
+    margin: 3% 15%;
+  }
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    font-family: "Mate SC", serif;
+  }
+  .content {
+    min-height: 100%;
+    font-family: "Mate SC", serif;
+  }
+  .content-inside {
+    padding: 20px;
+    padding-bottom: 200px;
+    font-family: "Mate SC", serif;
+  }
+  .footer {
+    position: relative;
+    height: 200px;
+    margin-top: -200px;
+    font-family: "Mate SC", serif;
+  }
+  @import url("https://fonts.googleapis.com/css2?family=Mate+SC&display=swap");
+  
+  .carro {
+    width: 100%;
+    margin-top: 2%;
+    float: right;
+    margin-right: 1%;
+  }
+  
+  .centrar {
+    text-align: center;
+    margin-top: 2%;
+  }
+  .App {
+    font-family: sans-serif;
+    text-align: center;
+  }
+  .perimeter {
+    max-width: 2024px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+  }
+  .gridGalery {
+    margin-right: -10%;
+  }
+  
+  .image {
+    flex: 0 0 100%;
+  }
+  
+  .copy {
+    padding: 20px;
+    font-family: sans-serif;
+  }
+  
+  @media (min-width: 415px) {
+    .perimeter {
+      flex-direction: row;
+    }
+  
+    .image {
+      flex: 0 0 50%;
+    }
+  }
+  
+  @media (min-width: 800px) {
+    .image {
+      flex: 0 0 33.5%;
+    }
+  }
+  @import url("https://fonts.googleapis.com/css2?family=Mate+SC&display=swap");
+  @page {
+    size: auto !important;
+  }
+  

@@ -16,7 +16,8 @@ const NavBar = () =>{
             <div className="nav-container">
           
           <NavLink style={{ color: "white" }} exact to="/" className="nav-logo" onClick={playAudio}>
-             <img src={gurenyuuIcon} width="75px" ></img>
+              
+              <img src={gurenyuuIcon} width="75px" height="90px" alt="MainMenu"></img>
             </NavLink>
   
             <ul className={click ? "nav-menu active" : "nav-menu"}>

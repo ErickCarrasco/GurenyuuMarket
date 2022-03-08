@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import './Styles/MainPage.css';
 import MainCard from '../Components/mainCard';
@@ -15,7 +15,8 @@ const MainPage = () =>{
                     <MainCard/>
                 </Grid>
                 <br/>
-                <h2 className="Centre">Most Popular</h2>
+                <br/>
+                <h1 className="centrar">Most Popular</h1>
                 <Grid item xs={12} sm={12}>
                     <PopularCard/>
                 </Grid>

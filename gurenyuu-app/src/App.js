@@ -6,6 +6,7 @@ import NavBar from './Components/NavBar';
 import ArticlePage from './Views/articlePage';
 import Login from './Views/logPage';
 import Register from './Views/register';
+import Profile from './Views/profile';
 import FooterPage from './Components/footer';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path="/article" element={<ArticlePage/>} />
         <Route path="/login" element={<Login/>} />
         <Route path="/signup" element={<Register/>}/>
+        <Route path="/profile" element={<Profile />} />
       </Routes>
       <FooterPage/>
     </Router>
