@@ -13,15 +13,16 @@ import firebase from "firebase/compat/app";
 import firebaseConfig from "../firebase-config";
 import "firebase/compat/firestore";
 import "firebase/compat/storage"
-import { getAuth} from "firebase/auth";
+import { getAuth, signOut } from "firebase/auth";
+import Button from '@material-ui/core/Button';
+import { useNavigate } from "react-router-dom";
 
 
-
-  if (!firebase.apps.length) {
+if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
-  }
-  
-  const db = firebase.firestore();
+}
+
+const db = firebase.firestore();
 
 
 
@@ -29,85 +30,109 @@ import { getAuth} from "firebase/auth";
 
 
 export default function MediaControlCard(props) {
-  //const { classes, theme } = props;
+    //const { classes, theme } = props;
     const auth = getAuth();
-const user2 = auth.currentUser;
-const [apellido, setApellido] = React.useState("");
+    const user2 = auth.currentUser;
+    let history = useNavigate();
+    const [apellido, setApellido] = React.useState("");
     const [nombre, setNombre] = React.useState("");
     const [email, setEmail] = React.useState("");
     const [imgUrl, setimgUrl] = React.useState();
-const getCategorias = async () => {
-  let obj;
-  const querySnapshot = await db.collection("Usuarios").get();
- 
-  querySnapshot.forEach((doc) => {
-    obj = doc.data();
-    obj.id = doc.id;
-      if(user2!=null){
-        if(user2.email ===doc.data().email ){
-          setNombre(doc.data().nombre)
-          setApellido(doc.data().apellido)
-          setEmail(doc.data().email)
-          setimgUrl(doc.data().imgUrl)
+    const getCategorias = async () => {
+        let obj;
+        const querySnapshot = await db.collection("Usuarios").get();
 
-        }
-      }
-      
-    
-  });
-};
+        querySnapshot.forEach((doc) => {
+            obj = doc.data();
+            obj.id = doc.id;
+            if (user2 != null) {
+                if (user2.email === doc.data().email) {
+                    setNombre(doc.data().nombre)
+                    setApellido(doc.data().apellido)
+                    setEmail(doc.data().email)
+                    setimgUrl(doc.data().imgUrl)
 
-  getCategorias()
+                }
+            }
 
 
-  return (
-    
-<Box
-      sx={{
-        width: 1250,
-        height: 250,
-        marginLeft:50,
-        marginTop:30
-     
-       
-      }}
-    >
-    <Grid className="centro" container spacing={2}  style={{ padding: 40 }} >
-       
- 
-      <Grid item xs={3}  >
-      <img 
-      className="photo"
-      src={imgUrl}
-      alt="new"
+        });
+    };
 
-      />
-     </Grid>
-
-     <Grid  item xs={5} >
-     <Typography variant="h4">
-          {nombre +"  "+apellido}
-          </Typography>
+    getCategorias()
 
 
+    const submit2 =()=>{
+        
+        const auth = getAuth();
+        signOut(auth).then(() =>  {
+  
+  
+              history("/");
+             window.location.reload();
+              
+          });
+          
+          
+        } 
 
-          <br></br>
-          <br></br>
-          <br></br>
+    return (
 
-          <Typography variant="subtitle2" >
-          Información: 
-          </Typography>
-          <Typography variant="subtitle2" >
-          {"Correo: "+ email}
-          </Typography>
-     
-     </Grid>
+        <Box
+            sx={{
+                width: 1250,
+                height: 250,
+                marginLeft: 50,
+                marginTop: 30
 
-    
-    </Grid>
-    </Box>
-    
-   
-  );
+
+            }}
+        >
+            <Grid className="centro" container spacing={2} style={{ padding: 40 }} >
+
+
+                <Grid item xs={3}  >
+                    <img
+                        className="photo"
+                        src={imgUrl}
+                        alt="new"
+
+                    />
+                </Grid>
+
+                <Grid item xs={5} >
+                    <Typography variant="h4">
+                        {nombre + "  " + apellido}
+                    </Typography>
+
+
+
+                    <br></br>
+                    <br></br>
+                    <br></br>
+
+                    <Typography variant="subtitle2" >
+                        Información:
+                    </Typography>
+                    <Typography variant="subtitle2" >
+                        {"Correo: " + email}
+                    </Typography>
+                    <Button
+                onClick={submit2}
+                fullWidth
+                variant="contained"
+                color="primary"
+
+            >
+                Log out
+            </Button>
+                </Grid>
+                
+
+            </Grid>
+            
+        </Box>
+
+
+    );
 }

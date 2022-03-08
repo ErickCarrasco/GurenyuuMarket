@@ -20,7 +20,7 @@ const UserProfile = (props) => {
   
   const auth = getAuth();
 const admin = auth.currentUser;
-
+  console.log("Hey")
   console.log(admin);
   
 

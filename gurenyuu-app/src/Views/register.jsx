@@ -109,7 +109,7 @@ createUserWithEmailAndPassword(auth, email, password2)
 const handleCloseMessage = () => {
   setOpenMessage(false);
   
-  history("/Profile");
+  history("/profile");
   //window.location.reload();
 
 };
