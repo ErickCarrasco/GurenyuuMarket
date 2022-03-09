@@ -6,7 +6,7 @@ The following application/repository is just for fun and has no intention in mak
 - Erick Carrasco
 
 
-## THIS REPO IS JUST FOR FUN, DON'T TAKE IT AS A OPERATIONAL WEBPAGE.
+## THIS REPO IS JUST FOR FUN, DON'T TAKE IT AS AN OPERATIONAL WEBPAGE.
 ### You can use it and modify it as you wish
 
 ### Features
