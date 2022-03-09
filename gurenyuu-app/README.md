@@ -13,7 +13,7 @@ The following application/repository is just for fun and has no intention in mak
 -   [x] Articles with pictures, and descriptions
 -   [x] Neco-Arc sound feats
 -   [ ] Cart Feature
--   [ ] Profile
+-   [x] Profile
 -   [ ] Memes
 -   [ ] More memes
 
